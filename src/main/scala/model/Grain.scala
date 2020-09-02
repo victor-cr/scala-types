@@ -4,18 +4,16 @@ package model
  * JavaDoc here
  *
  * @author Victor Polischuk
- * @since 9/2/2020 1:08 AM
+ * @since 9/2/2020 6:04 PM
  */
-class Egg extends Food {
-  override def name: String = "Egg"
+abstract class Grain extends Food {
+  override def name: String = "Grain"
 
   override def ingredients: Set[Food] = Set(this)
 
-  override def flavor: Map[Taste, Int] = Map(Taste.Sweet -> 5, Taste.Salty -> 50, Taste.Umami -> 20)
-
   // calculate(sweet, sour, bitter, salty, umami)
   override protected def calculateYummyness: PartialFunction[(Int, Int, Int, Int, Int), Int] = {
-    case (i, _, _, j, k) if k > 50 => normalizeYammyness(i + (j*j - k*k) / 100)
+    case (i, j, k, l, m) if (i + j + k + l + m) > 50 => normalizeYammyness(i + j + k + l + m)
     case r => super.calculateYummyness(r)
   }
 }

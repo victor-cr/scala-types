@@ -6,4 +6,6 @@
  */
 package object model {
   type Taste = Taste.Value
+
+  trait Terefah
 }

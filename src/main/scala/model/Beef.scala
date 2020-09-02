@@ -6,12 +6,10 @@ package model
  * @author Victor Polischuk
  * @since 9/2/2020 1:08 AM
  */
-class Egg extends Food {
-  override def name: String = "Egg"
+class Beef extends Meat {
+  override def name: String = "Beef"
 
-  override def ingredients: Set[Food] = Set(this)
-
-  override def flavor: Map[Taste, Int] = Map(Taste.Sweet -> 5, Taste.Salty -> 50, Taste.Umami -> 20)
+  override def flavor: Map[Taste, Int] = Map(Taste.Sweet -> 1, Taste.Salty -> 50, Taste.Umami -> 20)
 
   // calculate(sweet, sour, bitter, salty, umami)
   override protected def calculateYummyness: PartialFunction[(Int, Int, Int, Int, Int), Int] = {

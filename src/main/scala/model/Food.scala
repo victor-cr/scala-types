@@ -22,17 +22,17 @@ trait Food {
     val salty = flavors.getOrElse(Taste.Salty, 0)
     val umami = flavors.getOrElse(Taste.Umami, 0)
 
-    calculate(sweet, sour, bitter, salty, umami)
+    calculateYummyness(sweet, sour, bitter, salty, umami)
   }
 
-  protected def calculate: PartialFunction[(Int, Int, Int, Int, Int), Int] = {
+  protected def calculateYummyness: PartialFunction[(Int, Int, Int, Int, Int), Int] = {
     case (0, 0, 0, 0, 0) => 0
-    case (i, 0, 0, 0, 0) => normalize(i)
-    case (0, i, 0, 0, 0) => normalize(i)
-    case (0, 0, i, 0, 0) => normalize(i)
-    case (0, 0, 0, i, 0) => normalize(i)
-    case (0, 0, 0, 0, i) => 0
+    case (i, 0, 0, 0, 0) => normalizeYammyness(i)
+    case (0, i, 0, 0, 0) => normalizeYammyness(i)
+    case (0, 0, i, 0, 0) => normalizeYammyness(i)
+    case (0, 0, 0, i, 0) => normalizeYammyness(i)
+    case (0, 0, 0, 0, _) => 0
   }
 
-  protected final def normalize(i: Int): Int = if (i > 100) 100 else i
+  protected final def normalizeYammyness(i: Int): Int = Math.min(i, 100)
 }
